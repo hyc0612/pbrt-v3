@@ -1346,6 +1346,7 @@ int main(int argc, char *argv[]) {
             bounds[1][c] = std::max(bounds[1][c], mesh.positions[i]);
         }
     }
+    fprintf(f, "WorldBegin\n", objFilename);
     fprintf(f, "# Converted from \"%s\" by obj2pbrt\n", objFilename);
     fprintf(f, "# Scene bounds: (%f, %f, %f) - (%f, %f, %f)\n\n\n",
             bounds[0][0], bounds[0][1], bounds[0][2], bounds[1][0],
@@ -1585,6 +1586,9 @@ int main(int argc, char *argv[]) {
         }
         fprintf(f, "AttributeEnd\n\n\n");
     }
+
+    fprintf(f, "WorldEnd\n", objFilename);
+
     if (f != stdout) fclose(f);
 
     fprintf(stderr, "Converted %d meshes (%d triangles, %d mesh emitters).\n",
