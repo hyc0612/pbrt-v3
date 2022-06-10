@@ -1375,18 +1375,18 @@ int main(int argc, char *argv[]) {
                 mtl.diffuse[2] != 0) {
                 fprintf(f,
                         "Texture \"%s-kd-img\" \"color\" \"imagemap\" "
-                        "\"string filename\" [\"%s\"]\n",
+                        "\"string filename\" [ \"%s\" ]\n",
                         mtl.name.c_str(), mtl.diffuse_texname.c_str());
                 fprintf(
                     f,
                     "Texture \"%s-kd\" \"color\" \"scale\" \"texture tex1\" "
-                    "\"%s-kd-img\" \"color tex2\" [%f %f %f]\n",
+                    "\"%s-kd-img\" \"color tex2\" [ %f %f %f ]\n",
                     mtl.name.c_str(), mtl.name.c_str(), mtl.diffuse[0],
                     mtl.diffuse[1], mtl.diffuse[2]);
             } else {
                 fprintf(f,
                         "Texture \"%s-kd\" \"color\" \"imagemap\" "
-                        "\"string filename\" [\"%s\"]\n",
+                        "\"string filename\" [ \"%s\" ]\n",
                         mtl.name.c_str(), mtl.diffuse_texname.c_str());
             }
         }
@@ -1397,18 +1397,18 @@ int main(int argc, char *argv[]) {
                 mtl.specular[2] != 0) {
                 fprintf(f,
                         "Texture \"%s-ks-img\" \"color\" \"imagemap\" "
-                        "\"string filename\" [\"%s\"]\n",
+                        "\"string filename\" [ \"%s\" ]\n",
                         mtl.name.c_str(), mtl.specular_texname.c_str());
                 fprintf(
                     f,
                     "Texture \"%s-ks\" \"color\" \"scale\" \"texture tex1\" "
-                    "\"%s-ks-img\" \"color tex2\" [%f %f %f]\n",
+                    "\"%s-ks-img\" \"color tex2\" [ %f %f %f ]\n",
                     mtl.name.c_str(), mtl.name.c_str(), mtl.specular[0],
                     mtl.specular[1], mtl.specular[2]);
             } else {
                 fprintf(f,
                         "Texture \"%s-ks\" \"color\" \"imagemap\" "
-                        "\"string filename\" [\"%s\"]\n",
+                        "\"string filename\" [ \"%s\" ]\n",
                         mtl.name.c_str(), mtl.specular_texname.c_str());
             }
         }
@@ -1416,7 +1416,7 @@ int main(int argc, char *argv[]) {
         if (mtl.bump_texname != "") {
             fprintf(f,
                     "Texture \"%s-bump\" \"float\" \"imagemap\" "
-                    "\"string filename\" [\"%s\"]\n",
+                    "\"string filename\" [ \"%s\" ]\n",
                     mtl.name.c_str(), mtl.bump_texname.c_str());
         }
 
@@ -1427,17 +1427,17 @@ int main(int argc, char *argv[]) {
         if (hasDiffuseTex)
             fprintf(f, "\"texture Kd\" \"%s-kd\" ", mtl.name.c_str());
         else
-            fprintf(f, "\"color Kd\" [%f %f %f] ", mtl.diffuse[0],
+            fprintf(f, "\"color Kd\" [ %f %f %f ] ", mtl.diffuse[0],
                     mtl.diffuse[1], mtl.diffuse[2]);
         if (hasSpecularTex)
             fprintf(f, "\"texture Ks\" \"%s-ks\" ", mtl.name.c_str());
         else
-            fprintf(f, "\"color Ks\" [%f %f %f] ", mtl.specular[0],
+            fprintf(f, "\"color Ks\" [ %f %f %f ] ", mtl.specular[0],
                     mtl.specular[1], mtl.specular[2]);
         fprintf(f,
-                "\"float roughness\" [%f] "
-                "\"rgb Kt\" [%f %f %f] \"float index\" [%f] "
-                "\"rgb opacity\" [%f %f %f] ",
+                "\"float roughness\" [ %f ] "
+                "\"rgb Kt\" [ %f %f %f ] \"float index\" [ %f ] "
+                "\"rgb opacity\" [ %f %f %f ] ",
                 roughness, mtl.transmittance[0], mtl.transmittance[1],
                 mtl.transmittance[2], mtl.ior, mtl.dissolve, mtl.dissolve,
                 mtl.dissolve);
