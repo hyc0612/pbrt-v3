@@ -60,6 +60,8 @@
 #include <vector>
 #include <map>
 #include <cmath>
+#include <filesystem>
+using namespace std::filesystem;
 
 namespace tinyobj {
 
@@ -955,7 +957,11 @@ bool MaterialFileReader::operator()(const std::string &matId,
   std::string filepath;
 
   if (!m_mtlBasePath.empty()) {
-    filepath = std::string(m_mtlBasePath) + matId;
+
+    std::filesystem::path dir = m_mtlBasePath;
+    std::filesystem::path mtlname = matId;
+
+    filepath = (dir / mtlname).string();
   } else {
     filepath = matId;
   }
@@ -1324,7 +1330,12 @@ int main(int argc, char *argv[]) {
     std::vector<shape_t> shapes;
     std::vector<material_t> materials;
     std::string err;
-    if (!LoadObj(shapes, materials, err, objFilename, /* mtl_basepath */ nullptr,
+
+    std::filesystem::path mtl_basepath = objFilename;
+    mtl_basepath = mtl_basepath.parent_path();
+
+    
+    if (!LoadObj(shapes, materials, err, objFilename, mtl_basepath.string().c_str(),
                  ptexQuads ? 0 : load_flags_t(triangulation))) {
         fprintf(stderr, "%s: errors loading OBJ file: %s\n", objFilename, err.c_str());
         return 1;
