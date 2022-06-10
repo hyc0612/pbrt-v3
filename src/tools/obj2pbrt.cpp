@@ -1371,7 +1371,7 @@ int main(int argc, char *argv[]) {
     for (const material_t &mtl : materials) {
         bool hasDiffuseTex = (mtl.diffuse_texname != "");
         if (mtl.diffuse_texname != "") {
-            if (mtl.diffuse[0] != 0 || mtl.diffuse[1] != 0 ||
+            /*if (mtl.diffuse[0] != 0 || mtl.diffuse[1] != 0 ||
                 mtl.diffuse[2] != 0) {
                 fprintf(f,
                         "Texture \"%s-kd-img\" \"color\" \"imagemap\" "
@@ -1383,7 +1383,9 @@ int main(int argc, char *argv[]) {
                     "\"%s-kd-img\" \"color tex2\" [ %f %f %f ]\n",
                     mtl.name.c_str(), mtl.name.c_str(), mtl.diffuse[0],
                     mtl.diffuse[1], mtl.diffuse[2]);
-            } else {
+            } 
+            else */
+            {
                 fprintf(f,
                         "Texture \"%s-kd\" \"color\" \"imagemap\" "
                         "\"string filename\" [ \"%s\" ]\n",
