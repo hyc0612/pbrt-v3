@@ -1571,10 +1571,21 @@ int main(int argc, char *argv[]) {
             }
 
             fprintf(f, "Shape \"trianglemesh\"\n");
+
+            fprintf(f, "  \"integer indices\" [ \n\t");
+            for (size_t i = 0; i < indices.size(); ++i)
+                fprintf(f, "%d%s", indices[i], (i % 3) == 2 ? "\n\t" : " ");
+            if (!faceIndices.empty()) {
+                fprintf(f, "]\n  \"integer faceIndices\" [\n");
+                for (int i : faceIndices) fprintf(f, "\t%d\n", i);
+            }
+            fprintf(f, "]\n\n");
+
             fprintf(f, "  \"point3 P\" [ \n");
             for (Point3f p : P)
                 fprintf(f, "\t%.10g %.10g %.10g\n", p.x, p.y, p.z);
             fprintf(f,"]\n");
+
             if (!N.empty()) {
                 fprintf(f, "  \"normal N\" [ \n");
                 for (Normal3f n : N)
@@ -1587,15 +1598,8 @@ int main(int argc, char *argv[]) {
                     fprintf(f, "\t%.10g %.10g\n", tex.x, tex.y);
                 fprintf(f,"]\n");
             }
-            fprintf(f, "  \"integer indices\" [ \n\t");
-            for (size_t i = 0; i < indices.size(); ++i)
-                fprintf(f, "%d%s", indices[i], (i % 3) == 2 ? "\n\t" : " ");
-            if (!faceIndices.empty()) {
-                fprintf(f, "]\n  \"integer faceIndices\" [\n");
-                for (int i : faceIndices)
-                    fprintf(f, "\t%d\n", i);
-            }
-            fprintf(f, "]\n\n");
+            
+            
         }
         fprintf(f, "AttributeEnd\n\n\n");
     }
